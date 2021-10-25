@@ -52,8 +52,9 @@ function init() {
     dim = 8; //Valor dimensiones iniciales de los cubos.
     delta= dim/2;
     diagonal= Math.sqrt(Math.pow(delta, 2)+ Math.pow(delta, 2));
-    valor= diagonal-delta;
-    Angulo = ((Math.PI)/4);
+    Angulo = ((Math.PI)/6);
+    Angulo_2= ((Math.PI)/4)-Angulo;
+    valor=(Math.cos(Angulo_2))*diagonal;
     Cubo.push(cubo(dim, dim, dim, 'red', 'Physical', false)); //Se agrega el cubo 0.
 
     Cubo.push(cubo(dim, dim, dim, 'green', 'Physical', false)); //Se agrega el cubo 1.
@@ -62,9 +63,9 @@ function init() {
 
     for(i=0; i<3; i++){  //Se trasladan los tres cubos con uno de sus vértices al origen de coordenadas.
 
-      Cubo[i].translateX(dim/2); 
-      Cubo[i].translateZ(dim/2); 
-      Cubo[i].translateY(dim/2); 
+      Cubo[i].translateX(valor); 
+      Cubo[i].translateZ(valor); 
+      Cubo[i].translateY(delta); 
     }
     
     for(i=1; i<3; i++){ //Transformaciones de escalado y traslación sobre el eje y.
@@ -76,17 +77,12 @@ function init() {
 
     }
 
-    for(i=0; i<3; i++){ 
-
-      Cubo[i].translateX(valor); 
-      Cubo[i].translateZ(valor);  
-    }
     Cubo[0].rotateY(Angulo);
     Cubo[2].rotateY(Angulo);
 
 
     //Posicionamiento de la cámara
-    camera.position.set(0, 50, 0);
+    camera.position.set(-3*dim, 4*dim, 3*dim);
     camera.lookAt(scene.position);
 
     //Agrega la salida del render al elemento html.
