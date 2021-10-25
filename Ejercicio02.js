@@ -50,10 +50,10 @@ function init() {
 
     Cubo = [];   // Definir un array unidimensional para almacenar tres cubos
     dim = 8; //Valor dimensiones iniciales de los cubos.
-    delta= dim/2; //La mitad de las dimensiones de los cubos
-    diagonal= Math.sqrt(Math.pow(delta, 2)+ Math.pow(delta, 2)); //Se calcula el valor de la línea que va de la esquina superior del cubo a la mitad del mismo.
-    valor= diagonal-delta; //Se le resta a la diagonal, el valor de la mitad de las dimensiones del cubo.
-    Angulo = (Math.PI/4); //Angulo a rotar
+    delta= dim/2;
+    diagonal= Math.sqrt(Math.pow(delta, 2)+ Math.pow(delta, 2));
+    valor= diagonal-delta;
+    Angulo = ((Math.PI)/4);
     Cubo.push(cubo(dim, dim, dim, 'red', 'Physical', false)); //Se agrega el cubo 0.
 
     Cubo.push(cubo(dim, dim, dim, 'green', 'Physical', false)); //Se agrega el cubo 1.
@@ -81,13 +81,12 @@ function init() {
       Cubo[i].translateX(valor); 
       Cubo[i].translateZ(valor);  
     }
- 
-    Cubo[0].rotateY(Angulo);//Se rotan el cubo 1 y el cubo 3.
+    Cubo[0].rotateY(Angulo);
     Cubo[2].rotateY(Angulo);
 
 
     //Posicionamiento de la cámara
-    camera.position.set(-3*dim, 4*dim, 3*dim);
+    camera.position.set(0, 50, 0);
     camera.lookAt(scene.position);
 
     //Agrega la salida del render al elemento html.
